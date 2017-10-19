@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cert</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <pre>
+      <code>
+        <%= cert %>
+      </code>
+    </pre>
+    <pre>
+      <code>
+        <%= key %>
+      </code>
+    </pre>
+    <form method="POST" action="/register">
+      <div class="form-group">
+        <label>Register with Email</label>
+        <input name="email" type="text" class="form-control" placeholder="Email">
+        <button class="btn btn-success" type="Submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

@@ -49,6 +49,8 @@ app.post('/getcert', (req, res) => {
     req.session.keyClient = new LockrJS.KeyClient(lockrPartner)
     req.session.keyClient.encrypted(req.body.key)
     res.render('cert', { cert: response.cert_text, key: response.key_text })
+  }).catch(error => {
+    res.status(500).render('error', { message: `Error: ${error}`})
   })
 });
 
@@ -65,6 +67,8 @@ app.post('/register', (req, res) => {
     else {
       res.redirect('cert')
     }
+  }).catch(error => {
+    res.status(500).render('error', { message: `Error: ${error}`})
   })
 })
 
@@ -80,7 +84,9 @@ app.post('/setkeys', (req, res) => {
     else {
       res.redirect('createkeys')
     }
-  });
+  }).catch(error => {
+    res.status(500).render('error', { message: `Error: ${error}`})
+  })
 })
 
 app.post('/deletekey', (req, res) => {
@@ -96,7 +102,9 @@ app.post('/deletekey', (req, res) => {
     else {
       res.redirect('createkeys')
     }
-  });
+  }).catch(error => {
+    res.status(500).render('error', { message: `Error: ${error}`})
+  })
 })
 
 app.listen(3000)

@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Get and Set Keys</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <title>Keys</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
   <div class="container">
-    <h1>Create a Key</h1>
-    <form method="POST" action="/setkeys">
+    <div class="jumbotron">
+      <h3 class="text-center"><%= text %></h3>
+    </div>
+    <form method="POST" action="/deletekey">
+    <% if (!deleted) { %>
       <div class="form-group">
-        <label>Key Name</label>
-        <input name="keyName" type="text" class="form-control" placeholder="Key Name">
+        <label>Delete Key</label>
+        <input name="keyName" type="text" class="form-control" placeholder="Enter name of key to delete">
       </div>
-      <div class="form-group">
-        <label>Key Secret</label>
-        <input name="keySecret" type="text" class="form-control" placeholder="Key Secret">
-      </div>
-      <div class="form-group">
-        <label>Key Label</label>
-        <input name="keyLabel" type="text" class="form-control" placeholder="Key Label">
-      </div>
-      <button class="btn btn-success" type="Submit">Submit</button>
+      <button class="btn btn-danger">Delete</button>
     </form>
+    <% } else { %>
+      <a href="/createkeys" class="btn btn-info">Create Another Key</a>
+    <% } %>
   </div>
 </body>
 </html>

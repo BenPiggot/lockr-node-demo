@@ -10,6 +10,7 @@ const Lockr = LockrJS.Lockr;
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(__dirname + '/public'));
 app.use(session({
   secret:'qeofphjeq8492pdsdad',
   resave: false,
@@ -23,8 +24,8 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.get('/keys', (req, res) => {
-  res.render('keys')
+app.get('/createkeys', (req, res) => {
+  res.render('createkeys')
 })
 
 app.post('/getcert', (req, res) => {
@@ -55,9 +56,14 @@ app.post('/register', (req, res) => {
   const partner = new LockrJS.Partner(req.session.lockrPartner)
   const newLockrPartner = new Lockr(partner)
   const newSC = new LockrJS.SiteClient(newLockrPartner)
+
   newSC.register(req.body.email).then(response => {
+    console.log(response)
     if (response) {
-      res.render('keys')
+      res.render('createkeys')
+    }
+    else {
+      res.redirect('cert')
     }
   })
 })
@@ -66,8 +72,30 @@ app.post('/setkeys', (req, res) => {
   const partner = new LockrJS.Partner(req.session.lockrPartner)
   const newLockrPartner = new Lockr(partner)
   const newKC = new LockrJS.KeyClient(newLockrPartner)
-  req.session.keyClient.set('my_key', 'my super secret key value', 'My Key').then(response => {
-    res.send("Success!")
+  req.session.keyName = req.body.keyName
+  newKC.set(req.body.keyName, req.body.keySecret, req.body.keyLabel).then(response => {
+    if (response === true) {
+      res.render('keys', { deleted: false, text: "Success! You have created an encrypted key."})
+    }
+    else {
+      res.redirect('createkeys')
+    }
+  });
+})
+
+app.post('/deletekey', (req, res) => {
+  const partner = new LockrJS.Partner(req.session.lockrPartner)
+  const newLockrPartner = new Lockr(partner)
+  const newKC = new LockrJS.KeyClient(newLockrPartner)
+
+  const keyToDelete = req.body.keyName ? req.body.keyName : req.session.keyName
+  newKC.delete(keyToDelete).then(response => {
+    if (response === true) {
+      res.render('keys', { deleted: true, text: "You have successfully deleted your key."})
+    }
+    else {
+      res.redirect('createkeys')
+    }
   });
 })
 

@@ -2,17 +2,23 @@
 <html>
 <head>
   <title>Lockr Demo</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+      Lockr.io Demo
+    </a>
+  </nav>
   <div class="container">
-    <h1>Lockr for Node</h1>
+    <h1 class="text-center">Create an SSL Certificate</h1>
     <form method="POST" action="/getcert">
       <div class="form-group">
         <label>Create a Cert</label>
         <input name="key" type="text" class="form-control" placeholder="Enter key text">
-        <button class="btn btn-success" type="Submit">Submit</button>
       </div>
+      <button class="btn btn-success" type="Submit">Submit</button>
     </form>
   </div>
 </body>

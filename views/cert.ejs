@@ -2,10 +2,13 @@
 <html>
 <head>
   <title>Cert</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
   <div class="container">
+    <div class="jumbotron">
+      <h1 class="text-center">Success! You have created a certificate.</h1>
+    </div>
     <pre>
       <code>
         <%= cert %>
@@ -17,11 +20,12 @@
       </code>
     </pre>
     <form method="POST" action="/register">
+      <h3>Register As a Lockr Partner</h3>
       <div class="form-group">
         <label>Register with Email</label>
         <input name="email" type="text" class="form-control" placeholder="Email">
-        <button class="btn btn-success" type="Submit">Submit</button>
       </div>
+      <button class="btn btn-success" type="Submit">Submit</button>
     </form>
   </div>
 </body>
